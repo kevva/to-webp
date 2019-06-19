@@ -8,7 +8,7 @@
 ## Usage
 
 ```html
-<img src="https://url.to/https//foo.bar/img.png?quality=50&width=200&height=300" />
+<img src="https://webp.kevva.now.sh/https://bit.ly/2ZCmU3U?quality=50&width=250&height=250" />
 ```
 
 

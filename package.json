@@ -1,0 +1,25 @@
+{
+	"private": true,
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"build": "yum install libjpeg-devel libpng-devel && node build.js",
+		"now-build": "[[ $NOW_REGION != dev1 ]] && npm run build || exit 0",
+		"test": "xo && NOW_REGION=dev1 ava"
+	},
+	"dependencies": {
+		"bin-build": "^3.0.0",
+		"cwebp-bin": "^5.1.0",
+		"execa": "^1.0.0",
+		"fromentries": "^1.1.0",
+		"got": "^9.6.0"
+	},
+	"devDependencies": {
+		"ava": "^2.1.0",
+		"is-webp": "^1.0.1",
+		"nock": "^10.0.6",
+		"test-listen": "^1.1.0",
+		"xo": "^0.24.0"
+	}
+}

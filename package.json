@@ -18,7 +18,7 @@
 	"devDependencies": {
 		"ava": "^2.1.0",
 		"is-webp": "^1.0.1",
-		"nock": "^10.0.6",
+		"nock": "^11.0.0-beta.19",
 		"test-listen": "^1.1.0",
 		"xo": "^0.24.0"
 	}

@@ -10,6 +10,6 @@ const binBuild = require('bin-build');
 
 		console.log('cwebp built successfully');
 	} catch (error) {
-		console.error(error.message);
+		throw error;
 	}
 })();

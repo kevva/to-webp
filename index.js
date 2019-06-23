@@ -1,9 +1,7 @@
 'use strict';
 const path = require('path');
-const {URL} = require('url');
 const cwepb = require('cwebp-bin');
 const execa = require('execa');
-const fromentries = require('fromentries');
 const got = require('got');
 
 const isDev = process.env.NOW_REGION === 'dev1';
@@ -12,14 +10,14 @@ const bin = isDev ? cwepb : path.join(__dirname, 'cwebp');
 const handleError = (error, response) => {
 	console.error(error);
 
-	response.statusCode = 500;
+	response.status(500);
 	response.setHeader('content-type', 'text/plain');
-	response.end('Internal server error');
+	response.send('Internal server error');
 };
 
-module.exports = async (request, response) => {
+module.exports = (request, response) => {
 	const args = ['-quiet', '-mt'];
-	const {href: url, searchParams: query} = new URL(request.url.slice(1));
+	const url = request.url.slice(1);
 	const {
 		alphaQuality,
 		autoFilter,
@@ -34,10 +32,10 @@ module.exports = async (request, response) => {
 		size,
 		sns,
 		width = 0
-	} = fromentries(query);
+	} = request.query;
 
 	if (!request.headers.accept.includes('image/webp')) {
-		response.statusCode = 302;
+		response.status(302);
 		response.setHeader('location', url);
 		response.end();
 		return;
@@ -110,7 +108,7 @@ module.exports = async (request, response) => {
 		handleError(message, response);
 	});
 
-	response.statusCode = 200;
+	response.status(200);
 	response.setHeader('content-type', 'image/webp');
 	response.setHeader('cache-control', 'public, immutable, no-transform, s-maxage=31536000, max-age=31536000');
 

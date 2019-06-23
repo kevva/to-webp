@@ -12,10 +12,10 @@
 		"bin-build": "^3.0.0",
 		"cwebp-bin": "^5.1.0",
 		"execa": "^1.0.0",
-		"fromentries": "^1.1.0",
 		"got": "^9.6.0"
 	},
 	"devDependencies": {
+		"@now/node": "^0.9.0",
 		"ava": "^2.1.0",
 		"is-webp": "^1.0.1",
 		"nock": "^11.0.0-beta.19",

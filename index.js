@@ -17,7 +17,6 @@ const handleError = (error, response) => {
 
 module.exports = (request, response) => {
 	const args = ['-quiet', '-mt'];
-	const url = request.url.slice(1);
 	const {
 		alphaQuality,
 		autoFilter,
@@ -31,6 +30,7 @@ module.exports = (request, response) => {
 		sharpness,
 		size,
 		sns,
+		url,
 		width = 0
 	} = request.query;
 

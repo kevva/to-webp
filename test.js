@@ -19,7 +19,7 @@ test.before(async t => {
 });
 
 test('convert png to webp', async t => {
-	const {body} = await got(`${t.context.url}/http://foo.bar/fixture`, {
+	const {body} = await got(`${t.context.url}?url=http://foo.bar/fixture`, {
 		encoding: null,
 		headers: {'x-now-bridge-request-id': 1}
 	});

@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"engines": {
-		"node": ">=8"
+		"node": "8.10.x"
 	},
 	"scripts": {
 		"build": "yum install libjpeg-devel libpng-devel && node build.js",

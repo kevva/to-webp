@@ -21,10 +21,7 @@ test.before(async t => {
 test('convert png to webp', async t => {
 	const {body} = await got(`${t.context.url}/http://foo.bar/fixture`, {
 		encoding: null,
-		headers: {
-			accept: 'image/webp',
-			'x-now-bridge-request-id': 1
-		}
+		headers: {'x-now-bridge-request-id': 1}
 	});
 
 	t.true(isWebp(body));

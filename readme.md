@@ -10,8 +10,3 @@
 ```html
 <img src="https://to-webp.kevva.now.sh?url=https://bit.ly/2ZCmU3U&quality=50&width=250&height=250" />
 ```
-
-
-## License
-
-MIT © [Kevin Mårtensson](http://github.com/kevva)

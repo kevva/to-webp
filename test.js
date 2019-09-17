@@ -5,11 +5,11 @@ import got from 'got';
 import isWebp from 'is-webp';
 import nock from 'nock';
 import testListen from 'test-listen';
-import webp from '.';
+import toWebp from '.';
 
 test.before(async t => {
 	t.context.url = await testListen(
-		createServerWithHelpers(webp, {consumeEvent: () => ({})})
+		createServerWithHelpers(toWebp, {consumeEvent: () => ({})})
 	);
 
 	nock('http://foo.bar')
@@ -19,9 +19,10 @@ test.before(async t => {
 });
 
 test('convert png to webp', async t => {
-	const {body} = await got(`${t.context.url}?url=http://foo.bar/fixture`, {
+	const {body} = await got(t.context.url, {
 		encoding: null,
-		headers: {'x-now-bridge-request-id': 1}
+		headers: {'x-now-bridge-request-id': 1},
+		searchParams: {url: 'http://foo.bar/fixture'}
 	});
 
 	t.true(isWebp(body));

@@ -34,6 +34,8 @@ module.exports = (request, response) => {
 		width = 0
 	} = request.query;
 
+	response.setHeader('vary', 'accept');
+
 	if (request.headers.accept && !request.headers.accept.includes('image/webp')) {
 		response.status(302);
 		response.setHeader('location', url);

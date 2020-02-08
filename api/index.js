@@ -9,7 +9,7 @@ const handleError = (error, response) => {
 	response.status(500);
 };
 
-module.exports = async (request, response) => {
+module.exports = (request, response) => {
 	const args = ['-quiet', '-mt'];
 	const {
 		alphaQuality,

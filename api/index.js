@@ -6,10 +6,7 @@ const got = require('got');
 
 const handleError = (error, response) => {
 	console.error(error);
-
 	response.status(500);
-	response.setHeader('content-type', 'text/plain');
-	response.send('Internal server error');
 };
 
 module.exports = async (request, response) => {
@@ -98,6 +95,13 @@ module.exports = async (request, response) => {
 
 	cwebpStream.stderr.setEncoding('utf8');
 	cwebpStream.stderr.on('data', data => {
+		if (data.includes('Could not process file')) {
+			response.status(302);
+			response.setHeader('location', url);
+			response.end();
+			return;
+		}
+
 		handleError(data, response);
 	});
 

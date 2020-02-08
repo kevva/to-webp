@@ -6,7 +6,9 @@ const got = require('got');
 
 const handleError = (error, response) => {
 	console.error(error);
+
 	response.status(500);
+	response.end();
 };
 
 module.exports = (request, response) => {

@@ -5,7 +5,7 @@ import got from 'got';
 import isWebp from 'is-webp';
 import nock from 'nock';
 import testListen from 'test-listen';
-import toWebp from '.';
+import toWebp from './api';
 
 test.before(async t => {
 	t.context.url = await testListen(
@@ -20,8 +20,8 @@ test.before(async t => {
 
 test('convert png to webp', async t => {
 	const {body} = await got(t.context.url, {
-		encoding: null,
 		headers: {'x-now-bridge-request-id': 1},
+		responseType: 'buffer',
 		searchParams: {url: 'http://foo.bar/fixture'}
 	});
 

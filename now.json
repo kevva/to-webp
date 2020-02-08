@@ -1,13 +1,14 @@
 {
 	"version": 2,
-	"regions": ["all"],
-	"builds": [
+	"functions": {
+		"api/index.js": {
+			"includeFiles": "lib64"
+		}
+	},
+	"rewrites": [
 		{
-			"src": "index.js",
-			"use": "@now/node@canary",
-			"config": {
-				"maxLambdaSize": "15mb"
-			}
+			"source": "/",
+			"destination": "/api/index.js"
 		}
 	]
 }

@@ -1,25 +1,28 @@
 {
 	"private": true,
 	"engines": {
-		"node": "8.10.x"
+		"node": ">=12"
 	},
 	"scripts": {
-		"build": "yum install libjpeg-devel libpng-devel && node build.js",
-		"now-build": "[[ $NOW_REGION != dev1 ]] && npm run build || exit 0",
+		"copy-libs": "mkdir -p ./lib64 && cp /usr/lib64/{libGL.so.1,libX11.so.6,libXxf86vm.so.1,libXi.so.6,libGLX.so.0,libXext.so.6,libGLdispatch.so.0,libxcb.so.1,libXau.so.6} ./lib64",
+		"now-build": "[[ $NOW_REGION != dev1 ]] && npm run copy-libs || exit 0",
 		"test": "xo && NOW_REGION=dev1 ava"
 	},
 	"dependencies": {
-		"bin-build": "^3.0.0",
 		"cwebp-bin": "^5.1.0",
-		"execa": "^2.0.4",
-		"got": "^10.0.0-alpha.2.2"
+		"execa": "^4.0.0",
+		"got": "^10.5.4"
 	},
 	"devDependencies": {
-		"@now/node": "^1.0.0",
-		"ava": "^2.4.0",
+		"@ava/babel": "^1.0.0",
+		"@now/node": "^1.4.1",
+		"ava": "^3.2.0",
 		"is-webp": "^1.0.1",
-		"nock": "^11.3.5",
+		"nock": "^11.7.2",
 		"test-listen": "^1.1.0",
-		"xo": "^0.24.0"
+		"xo": "^0.25.3"
+	},
+	"ava": {
+		"babel": true
 	}
 }

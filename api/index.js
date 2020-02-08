@@ -4,9 +4,6 @@ const cwepb = require('cwebp-bin');
 const execa = require('execa');
 const got = require('got');
 
-const isDev = process.env.NOW_REGION === 'dev1';
-const bin = isDev ? cwepb : path.join(__dirname, 'cwebp');
-
 const handleError = (error, response) => {
 	console.error(error);
 
@@ -15,7 +12,7 @@ const handleError = (error, response) => {
 	response.send('Internal server error');
 };
 
-module.exports = (request, response) => {
+module.exports = async (request, response) => {
 	const args = ['-quiet', '-mt'];
 	const {
 		alphaQuality,
@@ -91,9 +88,11 @@ module.exports = (request, response) => {
 		args.push('-resize', width, height);
 	}
 
+	const libPath = path.join(__dirname, '..', 'lib64');
 	const imageStream = got.stream(url);
-	const cwebpStream = execa(bin, [...args, '-o', '-', '--', '-'], {
+	const cwebpStream = execa(cwepb, [...args, '-o', '-', '--', '-'], {
 		encoding: null,
+		env: {LD_LIBRARY_PATH: `${libPath}:${process.env.LD_LIBRARY_PATH}`},
 		input: imageStream
 	});
 

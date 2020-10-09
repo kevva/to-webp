@@ -9,19 +9,19 @@
 		"test": "xo && NOW_REGION=dev1 ava"
 	},
 	"dependencies": {
-		"cwebp-bin": "^5.1.0",
-		"execa": "^4.0.0",
-		"got": "^10.5.4"
+		"cwebp-bin": "^6.1.1",
+		"execa": "^4.0.3",
+		"got": "^10.7.0"
 	},
 	"devDependencies": {
-		"@ava/babel": "^1.0.0",
-		"@now/node": "^1.4.1",
-		"ava": "^3.2.0",
+		"@ava/babel": "^1.0.1",
+		"@now/node": "^1.8.4",
+		"ava": "^3.13.0",
 		"is-gif": "^3.0.0",
 		"is-webp": "^1.0.1",
-		"nock": "^11.7.2",
+		"nock": "^11.9.1",
 		"test-listen": "^1.1.0",
-		"xo": "^0.25.3"
+		"xo": "^0.25.4"
 	},
 	"ava": {
 		"babel": true
